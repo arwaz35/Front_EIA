@@ -5,28 +5,32 @@ import styles from "../styles/Home.module.css";
 import SideMenu from "../components/sideMenu";
 import Header from "../components/Header";
 
-export default function Home({ list_machine }) {
-  // const [list_machine, setlist_machine] = useState([]);
-  // const get_machine = () => {
-  //   fetch("http://172.20.10.7:8000/api/create_machine/", {
-  //     method: "GET",
-  //     headers: { "content-Type": "application/json" },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((jsonresponse) => {
-  //       console.log(jsonresponse);
-  //       setlist_machine(jsonresponse["listado de maquinas"]);
-  //     });
+export default function Home({ list_machine_1 }) {
+  const [list_machines, setlist_machine] = useState([]);
+  const get_machine = () => {
+    fetch("http://172.20.10.7:8000/api/create_machine/", {
+      method: "GET",
+      headers: { "content-Type": "application/json" },
+    }).then((response) => {
+      if (response.status === 200) {
+        return response.json().then((json_response) => {
+          setlist_machine(json_response["listado de maquinas"]);
+          return false;
+        });
+      } else {
+        alert("fallo");
+      }
+    });
 
-  //   // if (response.status === 200) {
-  //   //   console.log(response);
-  //   // } else {
-  //   //   alert("Error");
-  //   // }
-  // };
-  // useEffect(() => {
-  //   get_machine();
-  // }, []);
+    // if (response.status === 200) {
+    //   console.log(response);
+    // } else {
+    //   alert("Error");
+    // }
+  };
+  useEffect(() => {
+    get_machine();
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -39,7 +43,7 @@ export default function Home({ list_machine }) {
         <Header></Header>
         <SideMenu></SideMenu>
         <div className={styles.container_machine}>
-          {list_machine["listado de maquinas"].map((item, index) => {
+          {list_machines.map((item, index) => {
             return (
               <div
                 key={"list" + String(index)}

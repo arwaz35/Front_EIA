@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import SideMenu from "../components/sideMenu";
 import Header from "../components/Header";
 import Graph from "../components/Graph";
+import RTGraph from "../components/RTGraph";
 import { GiElectric } from "react-icons/gi";
 
 var mqtt = require("mqtt");
@@ -15,8 +16,15 @@ var options = {
   password: "PfB28Q6QswPRw9iY",
 };
 
+var cont = 0;
+var flag_kill = 0;
+
 export default function Dashboard({ data }) {
   const [current_val, setcurrent] = useState("");
+
+  //REal time graph
+  const [current_graph, setcurrent_graph] = useState([{ id: 0, value: 0 }]);
+
   let currentref = useRef("");
   currentref.current = current_val;
   useEffect(() => {
@@ -25,9 +33,15 @@ export default function Dashboard({ data }) {
     var note;
     client.on("message", function (topic, message) {
       note = message.toString();
+      cont = cont + 1;
+      setcurrent_graph((current_graph) => [
+        ...current_graph,
+        { id: cont, value: note },
+      ]);
       setcurrent(note);
-      if (currentref.current === "") {
+      if (currentref.current === "" && flag_kill === 0) {
         client.end();
+        flag_kill = 1;
       }
     });
   }, []);
@@ -43,7 +57,9 @@ export default function Dashboard({ data }) {
         <Header></Header>
         <SideMenu></SideMenu>
 
-        <Graph data={data["listado de puntos"]}></Graph>
+        <Graph data={data["list_1"]} data_1={data["list_2"]}></Graph>
+        <RTGraph data={current_graph}></RTGraph>
+
         <div className={styles.container_widgets}>
           <div className={styles.widget}>
             <div className={styles.tittle_widget}>CORRIENTE</div>

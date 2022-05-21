@@ -8,6 +8,8 @@ import Graph from "../components/Graph";
 import RTGraph from "../components/RTGraph";
 import { GiElectric } from "react-icons/gi";
 
+// Hola
+
 var mqtt = require("mqtt");
 var options = {
   protocol: "mqtts",

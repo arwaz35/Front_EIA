@@ -36,17 +36,17 @@ export default function Dashboard({ data_send }) {
     var note;
     client.on("message", function (topic, message) {
       note = message.toString();
-      if (topic === "Termofijadora01/fase3/corriente") {
-        console.log("corriente", note);
+      if (topic === "compresor1/Corriente/Fase") {
+        console.log("Fase", note);
         cont = cont + 1;
         setcurrent_graph((current_graph) => [
           ...current_graph,
           { id: cont, value: note },
         ]);
         setcurrent(note);
-      } else if (topic === "Termofijadora01/fase3/voltaje") {
+      } else if (topic === "compresor1/Corriente/Fase2") {
         setvoltage_val(note);
-        console.log("voltaje", note);
+        console.log("Fase2", note);
       }
       if (currentref.current === "") {
         client.end();

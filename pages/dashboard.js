@@ -13,9 +13,9 @@ import { GiElectric } from "react-icons/gi";
 var mqtt = require("mqtt");
 var options = {
   protocol: "mqtts",
-  clientId: "User1",
-  username: "smart",
-  password: "FzSjl27L9Ac9VVlk",
+  clientId: "Front",
+  username: "daniel-eia",
+  password: "PfB28Q6QswPRw9iY",
 };
 
 var cont = 0;

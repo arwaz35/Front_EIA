@@ -22,7 +22,7 @@ export default function Home({ list_machine_1 }) {
       }
     });
 
-    // if (response.status === 200) {
+    // if (response.status === 200) {ccc
     //   console.log(response);
     // } else {
     //   alert("Error");

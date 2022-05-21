@@ -48,9 +48,9 @@ export default function Dashboard({ data_send }) {
         setvoltage_val(note);
         console.log("Fase2", note);
       }
-      if (currentref.current === "") {
-        client.end();
-      }
+      // if (currentref.current === "") {
+      //   client.end();
+      // }
     });
   }, []);
   useEffect(() => {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import SideMenu from "../components/sideMenu";
+import SideMenu from "../components/SideMenu";
 import Header from "../components/Header";
 import Graph from "../components/Graph";
 import RTGraph from "../components/RTGraph";

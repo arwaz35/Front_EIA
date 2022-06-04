@@ -4,7 +4,7 @@ import styles from "../styles/SideMenu.module.css";
 
 import { FcHome } from "react-icons/fc";
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { FaIndustry } from "react-icons/fa";
+import { FaIndustry, FaServer } from "react-icons/fa";
 import { GoGraph } from "react-icons/go";
 import { useRouter } from "next/router";
 
@@ -28,6 +28,10 @@ export default function SideMenu() {
         className="icon_bar"
         onClick={() => router.push({ pathname: "/dashboard" })}
       ></GoGraph>
+      <FaServer
+        className="icon_bar"
+        onClick={() => router.push({ pathname: "/server" })}
+      ></FaServer>
     </div>
   );
 }
